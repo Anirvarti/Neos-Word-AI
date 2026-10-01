@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Neos Word AI — Class 7 AI Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="eyebrow">A browser-based AI learning project</div>
+      <h1>🧠 Neos Word AI</h1>
+      <p class="sub">Think. Predict. Create. Explore how a small language model learns word patterns, predicts what comes next, and turns ideas into beautiful quotes.</p>
+    </header>
+
+    <nav class="nav" id="nav" aria-label="Project sections">
+      <button class="on" data-page="predict">🧠 Predict</button>
+      <button data-page="create">✨ Create</button>
+      <button data-page="challenge">🎯 Challenge</button>
+      <button data-page="teach">👨‍🏫 Teach AI</button>
+      <button data-page="explore">🔬 Explore</button>
+    </nav>
+
+    <section id="predict" class="page">
+      <div class="grid">
+        <div class="card">
+          <div class="label">Your sentence</div>
+          <input id="sentence" value="I want to learn" autocomplete="off">
+          <div class="label top-gap">AI suggests the next word</div>
+          <div id="chips" class="chips"></div>
+          <div id="bars" class="bars"></div>
+          <div id="why" class="why"></div>
+        </div>
+        <div class="card">
+          <div class="label">AI brain</div>
+          <div class="sentence" id="brain">[ I ] → [ want ] → [ to ] → [ learn ] → <b>?</b></div>
+          <p><span class="badge">Offline</span> This demo uses a small n-gram language model in your browser. No server is required.</p>
+          <button class="btn" id="clearPredict">Reset prediction</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="create" class="page hidden">
+      <div class="grid">
+        <div class="card">
+          <div class="label">Your idea</div>
+          <textarea id="idea" placeholder="Example: I love learning because every mistake teaches me something."></textarea>
+          <div class="row top-gap-small">
+            <select id="theme" aria-label="Quote theme">
+              <option>Motivation</option><option>Learning</option><option>Creativity</option><option>Technology</option><option>Curiosity</option><option>Success</option><option>Nature</option>
+            </select>
+            <button class="btn primary" id="makeQuote">✨ Create a quote</button>
+          </div>
+          <div class="top-gap label">Generated quote</div>
+          <div id="quote" class="quote">Give the AI an idea and let it create something beautiful.<small>Neos Word AI</small></div>
+          <div class="row center top-gap-small">
+            <button class="btn" id="newQuote">↻ New version</button>
+            <button class="btn" id="copyQuote">📋 Copy</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="label">How creation works</div>
+          <div class="explore">
+            <div class="step"><b>1. Input</b><span>Your idea becomes the raw material.</span></div>
+            <div class="step"><b>2. Keywords</b><span>The browser finds useful words and the selected theme.</span></div>
+            <div class="step"><b>3. Pattern</b><span>A controlled set of language patterns shapes the sentence.</span></div>
+            <div class="step"><b>4. Output</b><span>The result is a polished quote, generated locally.</span></div>
+          </div>
+          <div class="why"><b>Be precise:</b> this quote creator is a local rule-and-pattern generator, not a claim that a large neural LLM was trained here.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenge" class="page hidden">
+      <div class="card challenge">
+        <div class="label mut">Prediction challenge</div>
+        <h2>Can you beat the AI?</h2>
+        <p>Complete the sentence before you reveal the model's most likely next word.</p>
+        <div class="row"><input id="challengeInput" value="I believe that"><button class="btn" id="reveal">Reveal AI</button></div>
+        <div class="top-gap-small"><div class="label mut">Your guess</div><input id="guess" placeholder="Type your prediction"><button class="btn" id="checkGuess" style="margin-top:10px">Check my guess</button></div>
+        <div id="challengeResult" class="top-gap-small"></div>
+      </div>
+    </section>
+
+    <section id="teach" class="page hidden">
+      <div class="grid">
+        <div class="card">
+          <div class="label">Teach the AI a sentence</div>
+          <textarea id="teachText" placeholder="I love exploring space."></textarea>
+          <button class="btn primary top-gap-small" id="teachBtn">👨‍🏫 Teach AI</button>
+          <div id="teachStatus" class="why hidden"></div>
+        </div>
+        <div class="card">
+          <div class="label">Test what it learned</div>
+          <input id="teachTest" value="I love">
+          <div id="teachPrediction" class="top-gap-small"></div>
+          <p class="muted">The model updates its local word-transition counts. It is learning patterns, not pretending to be GPT.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="explore" class="page hidden">
+      <div class="card">
+        <div class="label">🔬 How the AI works</div>
+        <div class="step"><b>Raw text</b><span>Start with example sentences.</span></div>
+        <div class="step"><b>Tokenize</b><span>Turn sentences into words: <span class="mono">[I] [want] [to] [learn]</span></span></div>
+        <div class="step"><b>Count patterns</b><span>Record which words commonly follow one or two previous words.</span></div>
+        <div class="step"><b>Probability</b><span>If “Python” appears 35 times after a context out of 100 observations, its estimated next-word probability is 35%.</span></div>
+        <div class="step"><b>Predict</b><span>Show the highest-probability candidates and let the learner choose.</span></div>
+        <div class="step"><b>Create</b><span>Use words and themes as inputs to a controlled quote generator.</span></div>
+        <div class="why"><b>Parent takeaway:</b> the project makes the invisible process visible: words → patterns → probabilities → prediction → creation.</div>
+      </div>
+    </section>
+
+    <div class="footer">Built as a Class 7 AI learning demonstration · Runs locally in the browser</div>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+  <script src="engagement.js"></script>
+</body>
+</html>
