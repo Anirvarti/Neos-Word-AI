@@ -1,4 +1,4 @@
-# Neos Word AI — Class 7
+# Neos Word AI
 
 A browser-only AI learning demonstration for a parent presentation.
 
